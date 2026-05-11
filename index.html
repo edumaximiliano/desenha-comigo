@@ -336,9 +336,19 @@ margin-bottom: 14px;
 position: relative;
 overflow: hidden;
 min-height: 0;
+transition: background 0.6s;
 }
-.result-stage::after {
-/* clouds */
+/* Per-drawing scene backgrounds */
+.result-stage.scene-peixe   { background: linear-gradient(180deg, #4ecdc4 0%, #1a5f7a 100%); }
+.result-stage.scene-gato    { background: linear-gradient(180deg, #ffe5a8 0%, #95e06c 100%); }
+.result-stage.scene-casa    { background: linear-gradient(180deg, #c5e8ff 0%, #95e06c 100%); }
+.result-stage.scene-milkshake { background: linear-gradient(180deg, #ffd0e2 0%, #ff6b9d 100%); }
+.result-stage.scene-arco-iris { background: linear-gradient(180deg, #6a8caf 0%, #b5d8eb 100%); }
+.result-stage.scene-foguete { background: linear-gradient(180deg, #0a0e3d 0%, #2d1b69 100%); }
+
+/* Default clouds (only for casa/arco-iris scenes) */
+.result-stage.scene-casa::after,
+.result-stage.scene-arco-iris::after {
 content: ‘’;
 position: absolute;
 top: 10%;
@@ -350,11 +360,156 @@ radial-gradient(ellipse 60px 25px at 20% 50%, white 40%, transparent 41%),
 radial-gradient(ellipse 50px 22px at 70% 50%, white 40%, transparent 41%);
 opacity: 0.85;
 animation: clouds 20s linear infinite;
+pointer-events: none;
 }
 @keyframes clouds {
 from { transform: translateX(-30px); }
 to { transform: translateX(30px); }
 }
+
+/* ===== Scene FX particles container ===== */
+.scene-fx {
+position: absolute;
+inset: 0;
+pointer-events: none;
+z-index: 1;
+overflow: hidden;
+}
+.scene-fx > * { position: absolute; }
+
+/* — Bubbles (peixe) — */
+.bubble {
+background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.9), rgba(255,255,255,0.3));
+border-radius: 50%;
+bottom: -30px;
+animation: bubbleUp linear infinite;
+opacity: 0.7;
+}
+@keyframes bubbleUp {
+0%   { transform: translateY(0) translateX(0); opacity: 0; }
+10%  { opacity: 0.8; }
+90%  { opacity: 0.8; }
+100% { transform: translateY(-110vh) translateX(20px); opacity: 0; }
+}
+
+/* — Dust puffs (gato) — */
+.dust {
+width: 30px;
+height: 14px;
+background: radial-gradient(ellipse, rgba(255,240,200,0.8), transparent 70%);
+border-radius: 50%;
+bottom: 15%;
+animation: dustPoof 1.2s ease-out infinite;
+opacity: 0;
+}
+@keyframes dustPoof {
+0%   { transform: translateX(-20px) scale(0.3); opacity: 0; }
+40%  { opacity: 0.8; }
+100% { transform: translateX(40px) scale(1.5); opacity: 0; }
+}
+
+/* — Smoke (casa) — */
+.smoke {
+width: 18px;
+height: 18px;
+background: radial-gradient(circle, rgba(200,200,200,0.85), rgba(200,200,200,0.3) 70%, transparent);
+border-radius: 50%;
+animation: smokeRise 3s ease-out infinite;
+opacity: 0;
+}
+@keyframes smokeRise {
+0%   { transform: translateY(0) scale(0.4); opacity: 0; }
+20%  { opacity: 0.8; }
+100% { transform: translateY(-180px) scale(2.2) translateX(15px); opacity: 0; }
+}
+
+/* Sun (casa) */
+.sun {
+top: 8%;
+right: 8%;
+width: 60px;
+height: 60px;
+background: radial-gradient(circle, #ffd23f 60%, #ff9933 100%);
+border-radius: 50%;
+box-shadow: 0 0 30px rgba(255,210,63,0.7);
+animation: sunPulse 3s ease-in-out infinite;
+}
+@keyframes sunPulse {
+0%, 100% { transform: scale(1); }
+50%      { transform: scale(1.1); }
+}
+
+/* — Sparkles (milkshake) — */
+.spark {
+width: 14px;
+height: 14px;
+background: radial-gradient(circle, #ffd23f 30%, transparent 31%);
+animation: sparkPop 1.5s ease-in-out infinite;
+opacity: 0;
+}
+@keyframes sparkPop {
+0%, 100% { transform: scale(0); opacity: 0; }
+50%      { transform: scale(1.4) rotate(180deg); opacity: 1; }
+}
+
+/* — Rain (arco-iris) — */
+.drop {
+width: 3px;
+height: 14px;
+background: linear-gradient(180deg, rgba(255,255,255,0) 0%, #6cb4ee 100%);
+border-radius: 2px;
+top: -20px;
+animation: rainFall linear infinite;
+}
+@keyframes rainFall {
+from { transform: translateY(0); }
+to   { transform: translateY(110vh); }
+}
+
+/* — Stars (foguete) — */
+.star {
+width: 4px;
+height: 4px;
+background: white;
+border-radius: 50%;
+box-shadow: 0 0 6px white;
+animation: twinkle ease-in-out infinite;
+}
+@keyframes twinkle {
+0%, 100% { opacity: 0.2; transform: scale(0.5); }
+50%      { opacity: 1; transform: scale(1.3); }
+}
+.shooting-star {
+width: 60px;
+height: 2px;
+background: linear-gradient(90deg, transparent, white);
+top: 20%;
+animation: shoot 4s linear infinite;
+opacity: 0;
+}
+@keyframes shoot {
+0%, 90% { opacity: 0; transform: translateX(-100px) translateY(0); }
+95%     { opacity: 1; }
+100%    { opacity: 0; transform: translateX(120vw) translateY(60px); }
+}
+
+/* Flame trail (foguete) — emerges below the rocket */
+.flame {
+bottom: 10%;
+left: 50%;
+width: 40px;
+height: 80px;
+background: radial-gradient(ellipse at 50% 0%, #ffd23f 0%, #ff5a36 50%, transparent 90%);
+border-radius: 50% 50% 30% 30%;
+transform: translateX(-50%);
+animation: flameFlicker 0.15s ease-in-out infinite alternate;
+z-index: 1;
+}
+@keyframes flameFlicker {
+from { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 0.9; }
+to   { transform: translateX(-50%) scaleY(1.2) scaleX(0.85); opacity: 1; }
+}
+
 #resultImage {
 position: absolute;
 max-width: 70%;
@@ -621,11 +776,8 @@ transform: scale(1);
     <div class="draw-title" id="resultTitle">olha só!</div>
   </div>
   <div class="result-stage" id="resultStage">
+    <div class="scene-fx" id="sceneFx"></div>
     <img id="resultImage" alt="seu desenho">
-    <div class="sparkle" style="top:20%; left:15%; animation-delay:0s"></div>
-    <div class="sparkle" style="top:30%; right:15%; animation-delay:0.3s"></div>
-    <div class="sparkle" style="bottom:30%; left:25%; animation-delay:0.7s"></div>
-    <div class="sparkle" style="bottom:25%; right:20%; animation-delay:1s"></div>
   </div>
   <div class="result-actions">
     <button class="btn btn-success" onclick="downloadResult()">💾 salvar</button>
@@ -1179,26 +1331,115 @@ function removeBackground(img) {
   ctx.drawImage(img, 0, 0, w, h);
   const imgData = ctx.getImageData(0, 0, w, h);
   const data = imgData.data;
+  const N = w * h;
 
-  // Threshold: pixels close to white become transparent
-  // Lightness threshold ~ 215. Tune if needed.
-  const T = 210;
-  for (let i = 0; i < data.length; i += 4) {
-    const r = data[i], g = data[i+1], b = data[i+2];
-    // average brightness
+  // Step 1: Sample border pixels to estimate "paper color"
+  // Take pixels from all 4 edges (avoiding corners which might be shadows)
+  const samples = [];
+  const border = 5; // skip outermost pixels
+  for (let x = border; x < w - border; x += 4) {
+    samples.push(getPixel(data, x, border, w));
+    samples.push(getPixel(data, x, h - border - 1, w));
+  }
+  for (let y = border; y < h - border; y += 4) {
+    samples.push(getPixel(data, border, y, w));
+    samples.push(getPixel(data, w - border - 1, y, w));
+  }
+  // Median paper color (robust against outliers like a hand or shadow on edge)
+  const paperR = median(samples.map(s => s[0]));
+  const paperG = median(samples.map(s => s[1]));
+  const paperB = median(samples.map(s => s[2]));
+
+  // Step 2: Build a "is background" mask
+  // A pixel is background if:
+  //   (a) close in color to paper (Euclidean distance in RGB), OR
+  //   (b) very bright AND very low saturation (white-ish)
+  // Mask: 1 = background candidate, 0 = content
+  const mask = new Uint8Array(N);
+  for (let i = 0; i < N; i++) {
+    const r = data[i*4], g = data[i*4+1], b = data[i*4+2];
+    const dr = r - paperR, dg = g - paperG, db = b - paperB;
+    const dist = Math.sqrt(dr*dr + dg*dg + db*db);
+    const maxC = Math.max(r, g, b);
+    const minC = Math.min(r, g, b);
     const lum = (r * 0.299 + g * 0.587 + b * 0.114);
-    if (lum > T) {
-      data[i+3] = 0; // make transparent
-    } else if (lum > T - 30) {
-      // soft edge: partial transparency
-      const alpha = ((T - lum) / 30) * 255;
-      data[i+3] = Math.max(0, Math.min(255, alpha));
+    const sat = maxC === 0 ? 0 : (maxC - minC) / maxC;
+    // Aggressive background detection:
+    // - close to paper color (dist < 45), OR
+    // - very bright (lum > 220) with low saturation (sat < 0.15)
+    if (dist < 45 || (lum > 220 && sat < 0.15)) {
+      mask[i] = 1;
+    }
+  }
+
+  // Step 3: Flood-fill from all 4 borders.
+  // Only background pixels CONNECTED to the border become transparent.
+  // This preserves white interior regions (e.g., the cat's eye whites).
+  const visited = new Uint8Array(N);
+  const queue = [];
+  // Seed from all border pixels marked as background
+  for (let x = 0; x < w; x++) {
+    if (mask[x] && !visited[x]) { queue.push(x); visited[x] = 1; }
+    const bi = (h - 1) * w + x;
+    if (mask[bi] && !visited[bi]) { queue.push(bi); visited[bi] = 1; }
+  }
+  for (let y = 0; y < h; y++) {
+    const li = y * w;
+    const ri = y * w + w - 1;
+    if (mask[li] && !visited[li]) { queue.push(li); visited[li] = 1; }
+    if (mask[ri] && !visited[ri]) { queue.push(ri); visited[ri] = 1; }
+  }
+  // BFS flood fill
+  let head = 0;
+  while (head < queue.length) {
+    const idx = queue[head++];
+    const x = idx % w;
+    const y = (idx - x) / w;
+    // 4-neighbors
+    const neighbors = [];
+    if (x > 0) neighbors.push(idx - 1);
+    if (x < w - 1) neighbors.push(idx + 1);
+    if (y > 0) neighbors.push(idx - w);
+    if (y < h - 1) neighbors.push(idx + w);
+    for (const n of neighbors) {
+      if (!visited[n] && mask[n]) {
+        visited[n] = 1;
+        queue.push(n);
+      }
+    }
+  }
+
+  // Step 4: Apply mask. visited[i] == 1 means "background reachable from edge" → transparent.
+  // For natural anti-aliased edges, soften transition: pixels close to paper color get partial alpha.
+  for (let i = 0; i < N; i++) {
+    if (visited[i]) {
+      data[i*4 + 3] = 0;
+    } else {
+      // Content pixel — keep, but if it's still slightly paper-ish (near boundary), soften alpha
+      const r = data[i*4], g = data[i*4+1], b = data[i*4+2];
+      const dr = r - paperR, dg = g - paperG, db = b - paperB;
+      const dist = Math.sqrt(dr*dr + dg*dg + db*db);
+      if (dist < 60) {
+        // soft transition zone
+        const alpha = Math.min(255, ((dist - 45) / 15) * 255);
+        data[i*4 + 3] = Math.max(0, alpha);
+      }
     }
   }
   ctx.putImageData(imgData, 0, 0);
 
-  // Crop to non-transparent bounds for tighter framing
+  // Step 5: Crop to content
   return cropToContent(canvas);
+}
+
+function getPixel(data, x, y, w) {
+  const i = (y * w + x) * 4;
+  return [data[i], data[i+1], data[i+2]];
+}
+
+function median(arr) {
+  const s = arr.slice().sort((a, b) => a - b);
+  return s[Math.floor(s.length / 2)];
 }
 
 function cropToContent(canvas) {
@@ -1239,15 +1480,128 @@ function cropToContent(canvas) {
 function showResult() {
   const d = DRAWINGS[currentDrawing];
   const img = document.getElementById('resultImage');
+  const stage = document.getElementById('resultStage');
+  const fx = document.getElementById('sceneFx');
+
   img.src = capturedImageDataUrl;
-  // Reset animation classes
   img.className = '';
-  // Force reflow then add class
   void img.offsetWidth;
   img.classList.add(d.anim);
+
+  // Apply scene background (one class per drawing key)
+  stage.className = 'result-stage scene-' + currentDrawing;
+
+  // Build scene FX particles for this drawing
+  fx.innerHTML = '';
+  buildSceneFX(currentDrawing, fx);
+
   document.getElementById('resultTitle').textContent = `seu ${d.name}!`;
   showScreen('screenResult');
   fireConfetti();
+}
+
+function buildSceneFX(key, container) {
+  switch (key) {
+    case 'peixe': {
+      // 14 bubbles rising at random positions, sizes, speeds
+      for (let i = 0; i < 14; i++) {
+        const b = document.createElement('div');
+        b.className = 'bubble';
+        const size = 8 + Math.random() * 22;
+        b.style.width = size + 'px';
+        b.style.height = size + 'px';
+        b.style.left = Math.random() * 95 + '%';
+        b.style.animationDuration = (4 + Math.random() * 5) + 's';
+        b.style.animationDelay = (Math.random() * 5) + 's';
+        container.appendChild(b);
+      }
+      break;
+    }
+    case 'gato': {
+      // dust puffs near the ground synced with bounce
+      for (let i = 0; i < 4; i++) {
+        const d = document.createElement('div');
+        d.className = 'dust';
+        d.style.left = (35 + Math.random() * 30) + '%';
+        d.style.animationDelay = (i * 0.3) + 's';
+        container.appendChild(d);
+      }
+      // a couple of sun rays / small clouds for warmth
+      const sunlet = document.createElement('div');
+      sunlet.className = 'sun';
+      sunlet.style.width = '50px';
+      sunlet.style.height = '50px';
+      container.appendChild(sunlet);
+      break;
+    }
+    case 'casa': {
+      // sun
+      const sun = document.createElement('div');
+      sun.className = 'sun';
+      container.appendChild(sun);
+      // smoke puffs from chimney - roughly above center
+      for (let i = 0; i < 6; i++) {
+        const s = document.createElement('div');
+        s.className = 'smoke';
+        s.style.left = (48 + Math.random() * 8) + '%';
+        s.style.top = '40%';
+        s.style.animationDelay = (i * 0.5) + 's';
+        container.appendChild(s);
+      }
+      break;
+    }
+    case 'milkshake': {
+      // sparkles around center
+      for (let i = 0; i < 14; i++) {
+        const s = document.createElement('div');
+        s.className = 'spark';
+        s.style.left = (10 + Math.random() * 80) + '%';
+        s.style.top = (10 + Math.random() * 80) + '%';
+        s.style.animationDelay = (Math.random() * 1.5) + 's';
+        const scale = 0.6 + Math.random();
+        s.style.transform = `scale(${scale})`;
+        container.appendChild(s);
+      }
+      break;
+    }
+    case 'arco-iris': {
+      // gentle rain drops
+      for (let i = 0; i < 30; i++) {
+        const d = document.createElement('div');
+        d.className = 'drop';
+        d.style.left = Math.random() * 100 + '%';
+        d.style.animationDuration = (1.2 + Math.random() * 1.5) + 's';
+        d.style.animationDelay = (Math.random() * 2) + 's';
+        container.appendChild(d);
+      }
+      break;
+    }
+    case 'foguete': {
+      // starfield
+      for (let i = 0; i < 40; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        s.style.left = Math.random() * 100 + '%';
+        s.style.top = Math.random() * 100 + '%';
+        s.style.animationDuration = (1 + Math.random() * 2) + 's';
+        s.style.animationDelay = (Math.random() * 2) + 's';
+        container.appendChild(s);
+      }
+      // a couple of shooting stars
+      for (let i = 0; i < 2; i++) {
+        const ss = document.createElement('div');
+        ss.className = 'shooting-star';
+        ss.style.top = (10 + Math.random() * 40) + '%';
+        ss.style.animationDelay = (i * 2.5 + Math.random()) + 's';
+        container.appendChild(ss);
+      }
+      // flame trail
+      const flame = document.createElement('div');
+      flame.className = 'flame';
+      container.appendChild(flame);
+      break;
+    }
+  }
 }
 
 function downloadResult() {
