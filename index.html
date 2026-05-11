@@ -377,7 +377,9 @@ overflow: hidden;
 }
 .scene-fx > * { position: absolute; }
 
-/* — Bubbles (peixe) — */
+/* ============================================================
+SCENE PEIXE — underwater scene
+============================================================ */
 .bubble {
 background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.9), rgba(255,255,255,0.3));
 border-radius: 50%;
@@ -392,7 +394,60 @@ opacity: 0.7;
 100% { transform: translateY(-110vh) translateX(20px); opacity: 0; }
 }
 
-/* — Dust puffs (gato) — */
+/* Tiny background fish swimming across */
+.mini-fish {
+width: 40px;
+height: 22px;
+animation: miniSwim linear infinite;
+}
+.mini-fish svg { width: 100%; height: 100%; display: block; }
+@keyframes miniSwim {
+0%   { transform: translateX(-60px) scaleX(1); }
+49%  { transform: translateX(calc(100vw + 60px)) scaleX(1); }
+50%  { transform: translateX(calc(100vw + 60px)) scaleX(-1); }
+99%  { transform: translateX(-60px) scaleX(-1); }
+100% { transform: translateX(-60px) scaleX(1); }
+}
+
+/* Starfish (peixe) */
+.starfish {
+bottom: 5%;
+width: 50px;
+height: 50px;
+animation: starfishPulse 2.5s ease-in-out infinite;
+}
+.starfish svg { width: 100%; height: 100%; }
+@keyframes starfishPulse {
+0%, 100% { transform: scale(1) rotate(0deg); }
+50%      { transform: scale(1.1) rotate(8deg); }
+}
+
+/* Seaweed (peixe) */
+.seaweed {
+bottom: 0;
+width: 30px;
+height: 100px;
+transform-origin: bottom center;
+animation: seaweedSway ease-in-out infinite;
+}
+.seaweed svg { width: 100%; height: 100%; }
+@keyframes seaweedSway {
+0%, 100% { transform: rotate(-8deg); }
+50%      { transform: rotate(8deg); }
+}
+
+/* Water caustic overlay on the picture (peixe) */
+#resultImage.fx-water {
+animation: swim 4s ease-in-out infinite, waterRipple 3s ease-in-out infinite;
+}
+@keyframes waterRipple {
+0%, 100% { filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.2)) hue-rotate(0deg) brightness(1); }
+50%      { filter: drop-shadow(3px 3px 10px rgba(80,180,220,0.5)) hue-rotate(-8deg) brightness(1.08); }
+}
+
+/* ============================================================
+SCENE GATO — sunny garden
+============================================================ */
 .dust {
 width: 30px;
 height: 14px;
@@ -408,7 +463,47 @@ opacity: 0;
 100% { transform: translateX(40px) scale(1.5); opacity: 0; }
 }
 
-/* — Smoke (casa) — */
+/* Butterfly */
+.butterfly {
+width: 26px;
+height: 22px;
+animation: butterflyFly linear infinite;
+}
+.butterfly svg { width: 100%; height: 100%; }
+@keyframes butterflyFly {
+0%   { transform: translate(0, 0) rotate(-5deg); }
+25%  { transform: translate(40vw, -30px) rotate(8deg); }
+50%  { transform: translate(80vw, 20px) rotate(-5deg); }
+75%  { transform: translate(40vw, 50px) rotate(8deg); }
+100% { transform: translate(0, 0) rotate(-5deg); }
+}
+
+/* Grass tufts at bottom */
+.grass {
+bottom: 0;
+width: 50px;
+height: 30px;
+transform-origin: bottom center;
+animation: grassSway ease-in-out infinite;
+}
+.grass svg { width: 100%; height: 100%; }
+@keyframes grassSway {
+0%, 100% { transform: rotate(-4deg); }
+50%      { transform: rotate(4deg); }
+}
+
+/* Sun-warmth glow on the picture */
+#resultImage.fx-warmth {
+animation: catBounce 1.2s ease-in-out infinite, warmGlow 2.5s ease-in-out infinite;
+}
+@keyframes warmGlow {
+0%, 100% { filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.2)) brightness(1); }
+50%      { filter: drop-shadow(0 0 20px rgba(255,210,63,0.6)) brightness(1.06); }
+}
+
+/* ============================================================
+SCENE CASA — countryside with sun, birds, flowers
+============================================================ */
 .smoke {
 width: 18px;
 height: 18px;
@@ -423,7 +518,6 @@ opacity: 0;
 100% { transform: translateY(-180px) scale(2.2) translateX(15px); opacity: 0; }
 }
 
-/* Sun (casa) */
 .sun {
 top: 8%;
 right: 8%;
@@ -436,10 +530,46 @@ animation: sunPulse 3s ease-in-out infinite;
 }
 @keyframes sunPulse {
 0%, 100% { transform: scale(1); }
-50%      { transform: scale(1.1); }
+50%      { transform: scale(1.12); }
 }
 
-/* — Sparkles (milkshake) — */
+/* Birds */
+.bird {
+width: 28px;
+height: 18px;
+animation: birdFly linear infinite;
+}
+.bird svg { width: 100%; height: 100%; }
+@keyframes birdFly {
+0%   { transform: translateX(-40px) translateY(0); }
+100% { transform: translateX(calc(100vw + 40px)) translateY(-20px); }
+}
+.bird svg .wing {
+transform-origin: center;
+animation: wingFlap 0.4s ease-in-out infinite alternate;
+}
+@keyframes wingFlap {
+from { transform: scaleY(1); }
+to   { transform: scaleY(0.3); }
+}
+
+/* Flowers at bottom */
+.flower {
+bottom: 3%;
+width: 28px;
+height: 40px;
+animation: flowerSway 3s ease-in-out infinite;
+transform-origin: bottom center;
+}
+.flower svg { width: 100%; height: 100%; }
+@keyframes flowerSway {
+0%, 100% { transform: rotate(-3deg); }
+50%      { transform: rotate(3deg); }
+}
+
+/* ============================================================
+SCENE MILKSHAKE — pink dream
+============================================================ */
 .spark {
 width: 14px;
 height: 14px;
@@ -452,7 +582,46 @@ opacity: 0;
 50%      { transform: scale(1.4) rotate(180deg); opacity: 1; }
 }
 
-/* — Rain (arco-iris) — */
+/* Floating hearts */
+.heart {
+width: 22px;
+height: 22px;
+animation: heartFloat linear infinite;
+opacity: 0;
+}
+.heart svg { width: 100%; height: 100%; }
+@keyframes heartFloat {
+0%   { transform: translateY(0) scale(0.5); opacity: 0; }
+10%  { opacity: 1; }
+90%  { opacity: 1; }
+100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+}
+
+/* Falling cherries */
+.cherry {
+width: 16px;
+height: 20px;
+top: -20px;
+animation: cherryFall linear infinite;
+}
+.cherry svg { width: 100%; height: 100%; }
+@keyframes cherryFall {
+0%   { transform: translateY(0) rotate(0deg); }
+100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* Shine overlay on milkshake picture */
+#resultImage.fx-shine {
+animation: milkshake 0.4s ease-in-out infinite, milkShine 3s linear infinite;
+}
+@keyframes milkShine {
+0%, 100% { filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.2)) brightness(1); }
+50%      { filter: drop-shadow(0 0 16px rgba(255,200,230,0.7)) brightness(1.12) saturate(1.1); }
+}
+
+/* ============================================================
+SCENE ARCO-IRIS — rainy then sunny
+============================================================ */
 .drop {
 width: 3px;
 height: 14px;
@@ -466,7 +635,32 @@ from { transform: translateY(0); }
 to   { transform: translateY(110vh); }
 }
 
-/* — Stars (foguete) — */
+/* Lightning flash (subtle, occasional) */
+.lightning-flash {
+inset: 0;
+background: rgba(255,255,200,0);
+animation: flash 7s linear infinite;
+z-index: 0;
+}
+@keyframes flash {
+0%, 95%, 100% { background: rgba(255,255,200,0); }
+96%           { background: rgba(255,255,200,0.4); }
+97%           { background: rgba(255,255,200,0); }
+98%           { background: rgba(255,255,200,0.3); }
+}
+
+/* Rainbow shimmer on picture */
+#resultImage.fx-rainbow-shimmer {
+animation: rainbowPulse 2s ease-in-out infinite, rainbowShimmer 4s linear infinite;
+}
+@keyframes rainbowShimmer {
+0%   { filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.2)) hue-rotate(0deg); }
+100% { filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.2)) hue-rotate(360deg); }
+}
+
+/* ============================================================
+SCENE FOGUETE — outer space
+============================================================ */
 .star {
 width: 4px;
 height: 4px;
@@ -493,7 +687,29 @@ opacity: 0;
 100%    { opacity: 0; transform: translateX(120vw) translateY(60px); }
 }
 
-/* Flame trail (foguete) — emerges below the rocket */
+/* Planet */
+.planet {
+width: 55px;
+height: 55px;
+border-radius: 50%;
+animation: planetFloat 8s ease-in-out infinite;
+}
+.planet.p1 {
+top: 12%; left: 8%;
+background: radial-gradient(circle at 30% 30%, #ff9966, #cc5533);
+box-shadow: inset -8px -8px 12px rgba(0,0,0,0.4);
+}
+.planet.p2 {
+top: 60%; right: 6%;
+width: 38px; height: 38px;
+background: radial-gradient(circle at 30% 30%, #66d9ff, #2266aa);
+box-shadow: inset -6px -6px 8px rgba(0,0,0,0.4);
+}
+@keyframes planetFloat {
+0%, 100% { transform: translateY(0); }
+50%      { transform: translateY(-15px); }
+}
+
 .flame {
 bottom: 10%;
 left: 50%;
@@ -508,6 +724,15 @@ z-index: 1;
 @keyframes flameFlicker {
 from { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 0.9; }
 to   { transform: translateX(-50%) scaleY(1.2) scaleX(0.85); opacity: 1; }
+}
+
+/* Space glow on rocket pic */
+#resultImage.fx-space-glow {
+animation: rocketUp 3s ease-in-out infinite, spaceGlow 1.5s ease-in-out infinite;
+}
+@keyframes spaceGlow {
+0%, 100% { filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4)) brightness(1); }
+50%      { filter: drop-shadow(0 0 15px rgba(255,200,100,0.7)) brightness(1.1); }
 }
 
 #resultImage {
@@ -1477,6 +1702,22 @@ function cropToContent(canvas) {
 /* =====================================================================
    RESULT SCREEN
    ===================================================================== */
+// SVG icon library for decorative elements
+const SVG = {
+  miniFishOrange: '<svg viewBox="0 0 40 22"><ellipse cx="18" cy="11" rx="14" ry="8" fill="#ff9933" stroke="#2b1d0e" stroke-width="1.5"/><polygon points="32,11 40,4 40,18" fill="#ff9933" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="10" cy="9" r="1.6" fill="#2b1d0e"/></svg>',
+  miniFishPink: '<svg viewBox="0 0 40 22"><ellipse cx="18" cy="11" rx="14" ry="8" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="1.5"/><polygon points="32,11 40,4 40,18" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="10" cy="9" r="1.6" fill="#2b1d0e"/></svg>',
+  miniFishYellow: '<svg viewBox="0 0 40 22"><ellipse cx="18" cy="11" rx="14" ry="8" fill="#ffd23f" stroke="#2b1d0e" stroke-width="1.5"/><polygon points="32,11 40,4 40,18" fill="#ffd23f" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="10" cy="9" r="1.6" fill="#2b1d0e"/></svg>',
+  starfish: '<svg viewBox="0 0 50 50"><path d="M25 3 L30 18 L46 18 L33 28 L38 44 L25 35 L12 44 L17 28 L4 18 L20 18 Z" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="2" stroke-linejoin="round"/><circle cx="25" cy="22" r="2" fill="#2b1d0e"/><circle cx="20" cy="28" r="1.5" fill="#2b1d0e"/><circle cx="30" cy="28" r="1.5" fill="#2b1d0e"/></svg>',
+  seaweed: '<svg viewBox="0 0 30 100" preserveAspectRatio="none"><path d="M15 100 Q5 80 15 60 Q25 40 15 20 Q5 10 15 0" fill="none" stroke="#2d8659" stroke-width="6" stroke-linecap="round"/><path d="M15 100 Q22 85 12 65 Q3 45 18 25" fill="none" stroke="#3da76e" stroke-width="4" stroke-linecap="round"/></svg>',
+  butterfly: '<svg viewBox="0 0 26 22"><ellipse cx="7" cy="8" rx="6" ry="5" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="1.2"/><ellipse cx="19" cy="8" rx="6" ry="5" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="1.2"/><ellipse cx="7" cy="15" rx="4" ry="4" fill="#ffd23f" stroke="#2b1d0e" stroke-width="1.2"/><ellipse cx="19" cy="15" rx="4" ry="4" fill="#ffd23f" stroke="#2b1d0e" stroke-width="1.2"/><line x1="13" y1="3" x2="13" y2="19" stroke="#2b1d0e" stroke-width="1.5"/></svg>',
+  grass: '<svg viewBox="0 0 50 30" preserveAspectRatio="none"><path d="M5 30 Q5 10 8 5" stroke="#3da76e" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M15 30 Q15 8 18 2" stroke="#2d8659" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M25 30 Q25 12 28 6" stroke="#3da76e" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M35 30 Q35 10 38 3" stroke="#2d8659" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M45 30 Q45 14 48 8" stroke="#3da76e" stroke-width="3" fill="none" stroke-linecap="round"/></svg>',
+  bird: '<svg viewBox="0 0 28 18"><path class="wing" d="M4 9 Q14 1 24 9" stroke="#2b1d0e" stroke-width="2.5" fill="none" stroke-linecap="round"/><path class="wing" d="M4 9 Q14 17 24 9" stroke="#2b1d0e" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',
+  flowerPink: '<svg viewBox="0 0 28 40"><line x1="14" y1="40" x2="14" y2="18" stroke="#2d8659" stroke-width="2"/><ellipse cx="9" cy="28" rx="3" ry="5" fill="#3da76e" transform="rotate(-30 9 28)"/><circle cx="14" cy="10" r="6" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="8" cy="14" r="4" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="20" cy="14" r="4" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="11" cy="5" r="4" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="17" cy="5" r="4" fill="#ff6b9d" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="14" cy="10" r="2.5" fill="#ffd23f"/></svg>',
+  flowerYellow: '<svg viewBox="0 0 28 40"><line x1="14" y1="40" x2="14" y2="18" stroke="#2d8659" stroke-width="2"/><ellipse cx="19" cy="28" rx="3" ry="5" fill="#3da76e" transform="rotate(30 19 28)"/><circle cx="14" cy="10" r="6" fill="#ffd23f" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="8" cy="14" r="4" fill="#ffd23f" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="20" cy="14" r="4" fill="#ffd23f" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="11" cy="5" r="4" fill="#ffd23f" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="17" cy="5" r="4" fill="#ffd23f" stroke="#2b1d0e" stroke-width="1.5"/><circle cx="14" cy="10" r="2.5" fill="#ff5a36"/></svg>',
+  heart: '<svg viewBox="0 0 22 22"><path d="M11 19 C 2 12, 2 4, 7 4 C 9 4, 11 6, 11 8 C 11 6, 13 4, 15 4 C 20 4, 20 12, 11 19 Z" fill="#ff5a36" stroke="#2b1d0e" stroke-width="1.5"/></svg>',
+  cherry: '<svg viewBox="0 0 16 20"><path d="M8 2 Q11 6 8 10" stroke="#2d8659" stroke-width="1.5" fill="none"/><circle cx="8" cy="14" r="5" fill="#ff5a36" stroke="#2b1d0e" stroke-width="1.2"/><circle cx="6.5" cy="12.5" r="1.2" fill="#ff9999"/></svg>'
+};
+
 function showResult() {
   const d = DRAWINGS[currentDrawing];
   const img = document.getElementById('resultImage');
@@ -1486,9 +1727,22 @@ function showResult() {
   img.src = capturedImageDataUrl;
   img.className = '';
   void img.offsetWidth;
-  img.classList.add(d.anim);
+  // Each drawing has its base animation + a scene-specific filter effect on the photo
+  const fxClass = {
+    peixe: 'fx-water',
+    gato: 'fx-warmth',
+    casa: '',
+    milkshake: 'fx-shine',
+    'arco-iris': 'fx-rainbow-shimmer',
+    foguete: 'fx-space-glow'
+  }[currentDrawing];
+  if (fxClass) {
+    img.classList.add(fxClass);
+  } else {
+    img.classList.add(d.anim);
+  }
 
-  // Apply scene background (one class per drawing key)
+  // Apply scene background
   stage.className = 'result-stage scene-' + currentDrawing;
 
   // Build scene FX particles for this drawing
@@ -1500,75 +1754,160 @@ function showResult() {
   fireConfetti();
 }
 
+function el(tag, className, html) {
+  const e = document.createElement(tag);
+  if (className) e.className = className;
+  if (html) e.innerHTML = html;
+  return e;
+}
+
 function buildSceneFX(key, container) {
   switch (key) {
     case 'peixe': {
-      // 14 bubbles rising at random positions, sizes, speeds
-      for (let i = 0; i < 14; i++) {
-        const b = document.createElement('div');
-        b.className = 'bubble';
-        const size = 8 + Math.random() * 22;
+      // 18 bubbles, varied sizes
+      for (let i = 0; i < 18; i++) {
+        const b = el('div', 'bubble');
+        const size = 8 + Math.random() * 28;
         b.style.width = size + 'px';
         b.style.height = size + 'px';
         b.style.left = Math.random() * 95 + '%';
-        b.style.animationDuration = (4 + Math.random() * 5) + 's';
-        b.style.animationDelay = (Math.random() * 5) + 's';
+        b.style.animationDuration = (4 + Math.random() * 6) + 's';
+        b.style.animationDelay = (Math.random() * 6) + 's';
         container.appendChild(b);
       }
+      // 3 mini fish at different depths
+      const fishVariants = [SVG.miniFishOrange, SVG.miniFishPink, SVG.miniFishYellow];
+      for (let i = 0; i < 3; i++) {
+        const f = el('div', 'mini-fish', fishVariants[i]);
+        f.style.top = (20 + i * 22 + Math.random() * 10) + '%';
+        f.style.animationDuration = (12 + i * 4) + 's';
+        f.style.animationDelay = (-i * 4) + 's';
+        f.style.opacity = 0.85 - i * 0.15;
+        container.appendChild(f);
+      }
+      // 2 starfish at bottom corners
+      const s1 = el('div', 'starfish', SVG.starfish);
+      s1.style.left = '5%';
+      container.appendChild(s1);
+      const s2 = el('div', 'starfish', SVG.starfish);
+      s2.style.right = '8%';
+      s2.style.transform = 'scale(0.8)';
+      s2.style.animationDelay = '-1s';
+      container.appendChild(s2);
+      // Seaweeds along bottom
+      const positions = [8, 28, 72, 88];
+      positions.forEach((pos, i) => {
+        const sw = el('div', 'seaweed', SVG.seaweed);
+        sw.style.left = pos + '%';
+        sw.style.animationDuration = (3 + Math.random() * 2) + 's';
+        sw.style.animationDelay = (-Math.random() * 3) + 's';
+        sw.style.height = (80 + Math.random() * 40) + 'px';
+        container.appendChild(sw);
+      });
       break;
     }
+
     case 'gato': {
-      // dust puffs near the ground synced with bounce
+      // Sun
+      const sun = el('div', 'sun');
+      sun.style.width = '55px';
+      sun.style.height = '55px';
+      container.appendChild(sun);
+      // Dust puffs
       for (let i = 0; i < 4; i++) {
-        const d = document.createElement('div');
-        d.className = 'dust';
+        const d = el('div', 'dust');
         d.style.left = (35 + Math.random() * 30) + '%';
         d.style.animationDelay = (i * 0.3) + 's';
         container.appendChild(d);
       }
-      // a couple of sun rays / small clouds for warmth
-      const sunlet = document.createElement('div');
-      sunlet.className = 'sun';
-      sunlet.style.width = '50px';
-      sunlet.style.height = '50px';
-      container.appendChild(sunlet);
+      // Butterflies
+      for (let i = 0; i < 2; i++) {
+        const b = el('div', 'butterfly', SVG.butterfly);
+        b.style.top = (15 + i * 30) + '%';
+        b.style.left = '0%';
+        b.style.animationDuration = (12 + i * 4) + 's';
+        b.style.animationDelay = (-i * 6) + 's';
+        container.appendChild(b);
+      }
+      // Grass at bottom
+      [5, 30, 65, 90].forEach((pos, i) => {
+        const g = el('div', 'grass', SVG.grass);
+        g.style.left = pos + '%';
+        g.style.animationDuration = (2.5 + Math.random()) + 's';
+        g.style.animationDelay = (-Math.random() * 2) + 's';
+        container.appendChild(g);
+      });
       break;
     }
+
     case 'casa': {
-      // sun
-      const sun = document.createElement('div');
-      sun.className = 'sun';
-      container.appendChild(sun);
-      // smoke puffs from chimney - roughly above center
+      // Sun
+      container.appendChild(el('div', 'sun'));
+      // Smoke from chimney
       for (let i = 0; i < 6; i++) {
-        const s = document.createElement('div');
-        s.className = 'smoke';
+        const s = el('div', 'smoke');
         s.style.left = (48 + Math.random() * 8) + '%';
         s.style.top = '40%';
         s.style.animationDelay = (i * 0.5) + 's';
         container.appendChild(s);
       }
+      // Birds flying across
+      for (let i = 0; i < 2; i++) {
+        const b = el('div', 'bird', SVG.bird);
+        b.style.top = (20 + i * 15) + '%';
+        b.style.left = '0%';
+        b.style.animationDuration = (10 + i * 3) + 's';
+        b.style.animationDelay = (-i * 5) + 's';
+        container.appendChild(b);
+      }
+      // Flowers along bottom
+      const flowerPositions = [[8, SVG.flowerPink], [22, SVG.flowerYellow], [78, SVG.flowerYellow], [90, SVG.flowerPink]];
+      flowerPositions.forEach(([pos, svg], i) => {
+        const f = el('div', 'flower', svg);
+        f.style.left = pos + '%';
+        f.style.animationDelay = (-i * 0.5) + 's';
+        container.appendChild(f);
+      });
       break;
     }
+
     case 'milkshake': {
-      // sparkles around center
-      for (let i = 0; i < 14; i++) {
-        const s = document.createElement('div');
-        s.className = 'spark';
-        s.style.left = (10 + Math.random() * 80) + '%';
+      // Sparkles
+      for (let i = 0; i < 16; i++) {
+        const s = el('div', 'spark');
+        s.style.left = (8 + Math.random() * 84) + '%';
         s.style.top = (10 + Math.random() * 80) + '%';
         s.style.animationDelay = (Math.random() * 1.5) + 's';
         const scale = 0.6 + Math.random();
         s.style.transform = `scale(${scale})`;
         container.appendChild(s);
       }
+      // Floating hearts
+      for (let i = 0; i < 8; i++) {
+        const h = el('div', 'heart', SVG.heart);
+        h.style.left = (5 + Math.random() * 90) + '%';
+        h.style.bottom = '-30px';
+        h.style.animationDuration = (6 + Math.random() * 4) + 's';
+        h.style.animationDelay = (Math.random() * 6) + 's';
+        container.appendChild(h);
+      }
+      // Falling cherries
+      for (let i = 0; i < 5; i++) {
+        const c = el('div', 'cherry', SVG.cherry);
+        c.style.left = Math.random() * 95 + '%';
+        c.style.animationDuration = (4 + Math.random() * 3) + 's';
+        c.style.animationDelay = (Math.random() * 4) + 's';
+        container.appendChild(c);
+      }
       break;
     }
+
     case 'arco-iris': {
-      // gentle rain drops
-      for (let i = 0; i < 30; i++) {
-        const d = document.createElement('div');
-        d.className = 'drop';
+      // Lightning flash (subtle, occasional)
+      container.appendChild(el('div', 'lightning-flash'));
+      // Rain
+      for (let i = 0; i < 35; i++) {
+        const d = el('div', 'drop');
         d.style.left = Math.random() * 100 + '%';
         d.style.animationDuration = (1.2 + Math.random() * 1.5) + 's';
         d.style.animationDelay = (Math.random() * 2) + 's';
@@ -1576,29 +1915,30 @@ function buildSceneFX(key, container) {
       }
       break;
     }
+
     case 'foguete': {
-      // starfield
-      for (let i = 0; i < 40; i++) {
-        const s = document.createElement('div');
-        s.className = 'star';
+      // Starfield
+      for (let i = 0; i < 50; i++) {
+        const s = el('div', 'star');
         s.style.left = Math.random() * 100 + '%';
         s.style.top = Math.random() * 100 + '%';
         s.style.animationDuration = (1 + Math.random() * 2) + 's';
         s.style.animationDelay = (Math.random() * 2) + 's';
         container.appendChild(s);
       }
-      // a couple of shooting stars
-      for (let i = 0; i < 2; i++) {
-        const ss = document.createElement('div');
-        ss.className = 'shooting-star';
-        ss.style.top = (10 + Math.random() * 40) + '%';
+      // Planets
+      container.appendChild(el('div', 'planet p1'));
+      container.appendChild(el('div', 'planet p2'));
+      // Shooting stars
+      for (let i = 0; i < 3; i++) {
+        const ss = el('div', 'shooting-star');
+        ss.style.top = (8 + Math.random() * 50) + '%';
         ss.style.animationDelay = (i * 2.5 + Math.random()) + 's';
+        ss.style.animationDuration = (3 + Math.random() * 2) + 's';
         container.appendChild(ss);
       }
-      // flame trail
-      const flame = document.createElement('div');
-      flame.className = 'flame';
-      container.appendChild(flame);
+      // Flame trail
+      container.appendChild(el('div', 'flame'));
       break;
     }
   }
