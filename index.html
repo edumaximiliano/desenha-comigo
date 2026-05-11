@@ -19,8 +19,8 @@
     --c-pink: #ff6b9d;
     --c-green: #95e06c;
     --c-purple: #a06cd5;
-    --shadow: 4px 4px 0 var(--c-ink);
-    --shadow-lg: 6px 6px 0 var(--c-ink);
+    --shadow: 4px 4px 0 #2b1d0e;
+    --shadow-lg: 6px 6px 0 #2b1d0e;
   }
 
 - { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -33,8 +33,8 @@ overscroll-behavior: none;
 
 body {
 font-family: ‘Fredoka’, system-ui, sans-serif;
-background: var(–c-bg);
-color: var(–c-ink);
+background: #fff8e7;
+color: #2b1d0e;
 background-image:
 radial-gradient(circle at 20% 30%, rgba(255,210,63,0.15) 0%, transparent 50%),
 radial-gradient(circle at 80% 70%, rgba(78,205,196,0.15) 0%, transparent 50%);
@@ -74,9 +74,9 @@ padding: 12px 0 20px;
 .home-title {
 font-family: ‘Bowlby One’, sans-serif;
 font-size: clamp(2.2rem, 9vw, 3.5rem);
-color: var(–c-primary);
+color: #ff5a36;
 line-height: 0.95;
-text-shadow: 3px 3px 0 var(–c-ink);
+text-shadow: 3px 3px 0 #2b1d0e;
 letter-spacing: -1px;
 transform: rotate(-2deg);
 display: inline-block;
@@ -85,7 +85,7 @@ display: inline-block;
 font-size: clamp(0.95rem, 3.5vw, 1.1rem);
 margin-top: 8px;
 font-weight: 600;
-color: var(–c-ink);
+color: #2b1d0e;
 opacity: 0.75;
 }
 .home-emoji {
@@ -110,10 +110,10 @@ padding-bottom: 24px;
 
 .drawing-card {
 background: white;
-border: 3px solid var(–c-ink);
+border: 3px solid #2b1d0e;
 border-radius: 18px;
 padding: 12px 8px 10px;
-box-shadow: var(–shadow);
+box-shadow: 4px 4px 0 #2b1d0e;
 cursor: pointer;
 transition: transform 0.15s, box-shadow 0.15s;
 aspect-ratio: 1;
@@ -126,7 +126,7 @@ overflow: hidden;
 }
 .drawing-card:active {
 transform: translate(2px, 2px);
-box-shadow: 2px 2px 0 var(–c-ink);
+box-shadow: 2px 2px 0 #2b1d0e;
 }
 .drawing-card:nth-child(1) { background: #fff3a8; }
 .drawing-card:nth-child(2) { background: #b8eed5; }
@@ -161,8 +161,8 @@ width: 48px;
 height: 48px;
 border-radius: 50%;
 background: white;
-border: 3px solid var(–c-ink);
-box-shadow: var(–shadow);
+border: 3px solid #2b1d0e;
+box-shadow: 4px 4px 0 #2b1d0e;
 font-size: 1.5rem;
 cursor: pointer;
 display: flex;
@@ -171,19 +171,19 @@ justify-content: center;
 flex-shrink: 0;
 transition: transform 0.1s;
 }
-.btn-back:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(–c-ink); }
+.btn-back:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #2b1d0e; }
 
 .draw-title {
 font-family: ‘Bowlby One’, sans-serif;
 font-size: clamp(1.3rem, 5vw, 1.7rem);
-color: var(–c-ink);
+color: #2b1d0e;
 text-transform: lowercase;
 flex: 1;
 }
 
 .progress-bar {
 background: white;
-border: 3px solid var(–c-ink);
+border: 3px solid #2b1d0e;
 border-radius: 14px;
 height: 22px;
 overflow: hidden;
@@ -192,9 +192,9 @@ position: relative;
 }
 .progress-fill {
 height: 100%;
-background: linear-gradient(90deg, var(–c-primary), var(–c-yellow));
+background: linear-gradient(90deg, #ff5a36, #ffd23f);
 transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-border-right: 3px solid var(–c-ink);
+border-right: 3px solid #2b1d0e;
 }
 .progress-text {
 position: absolute;
@@ -204,14 +204,14 @@ align-items: center;
 justify-content: center;
 font-weight: 700;
 font-size: 0.85rem;
-color: var(–c-ink);
+color: #2b1d0e;
 }
 
 .canvas-wrap {
 background: white;
-border: 3px solid var(–c-ink);
+border: 3px solid #2b1d0e;
 border-radius: 20px;
-box-shadow: var(–shadow-lg);
+box-shadow: 6px 6px 0 #2b1d0e;
 flex: 1;
 min-height: 0;
 display: flex;
@@ -237,15 +237,15 @@ max-height: 100%;
 }
 
 .instruction {
-background: var(–c-yellow);
-border: 3px solid var(–c-ink);
+background: #ffd23f;
+border: 3px solid #2b1d0e;
 border-radius: 16px;
 padding: 12px 16px;
 margin: 14px 0;
 font-weight: 600;
 font-size: clamp(0.95rem, 3.8vw, 1.1rem);
 text-align: center;
-box-shadow: var(–shadow);
+box-shadow: 4px 4px 0 #2b1d0e;
 line-height: 1.3;
 }
 
@@ -255,25 +255,25 @@ gap: 10px;
 }
 .btn {
 flex: 1;
-border: 3px solid var(–c-ink);
+border: 3px solid #2b1d0e;
 border-radius: 16px;
 padding: 16px 12px;
 font-family: ‘Bowlby One’, sans-serif;
 font-size: clamp(1rem, 4vw, 1.2rem);
 cursor: pointer;
-box-shadow: var(–shadow);
+box-shadow: 4px 4px 0 #2b1d0e;
 transition: transform 0.1s, box-shadow 0.1s;
 text-transform: lowercase;
 background: white;
 }
 .btn:active:not(:disabled) {
 transform: translate(2px, 2px);
-box-shadow: 2px 2px 0 var(–c-ink);
+box-shadow: 2px 2px 0 #2b1d0e;
 }
 .btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.btn-primary { background: var(–c-primary); color: white; }
+.btn-primary { background: #ff5a36; color: white; }
 .btn-secondary { background: white; }
-.btn-success { background: var(–c-green); }
+.btn-success { background: #95e06c; }
 
 /* ============ CAPTURE SCREEN ============ */
 .capture-content {
@@ -296,7 +296,7 @@ animation: bounce 1.5s ease-in-out infinite;
 .capture-msg {
 font-family: ‘Bowlby One’, sans-serif;
 font-size: clamp(1.3rem, 5vw, 1.6rem);
-color: var(–c-ink);
+color: #2b1d0e;
 padding: 0 20px;
 }
 .capture-sub {
@@ -317,21 +317,21 @@ padding: 0 16px;
 #videoPreview {
 width: 100%;
 max-width: 420px;
-border: 3px solid var(–c-ink);
+border: 3px solid #2b1d0e;
 border-radius: 18px;
 background: black;
 aspect-ratio: 4/3;
 object-fit: cover;
-box-shadow: var(–shadow-lg);
+box-shadow: 6px 6px 0 #2b1d0e;
 }
 
 /* ============ RESULT SCREEN ============ */
 .result-stage {
 flex: 1;
 background: linear-gradient(180deg, #c5e8ff 0%, #95e06c 100%);
-border: 3px solid var(–c-ink);
+border: 3px solid #2b1d0e;
 border-radius: 20px;
-box-shadow: var(–shadow-lg);
+box-shadow: 6px 6px 0 #2b1d0e;
 margin-bottom: 14px;
 position: relative;
 overflow: hidden;
@@ -428,7 +428,7 @@ animation: rocketUp 3s ease-in-out infinite;
 position: absolute;
 width: 20px;
 height: 20px;
-background: radial-gradient(circle, var(–c-yellow) 30%, transparent 31%);
+background: radial-gradient(circle, #ffd23f 30%, transparent 31%);
 animation: sparkle 1.5s ease-in-out infinite;
 z-index: 3;
 pointer-events: none;
@@ -473,8 +473,8 @@ gap: 16px;
 .spinner {
 width: 60px;
 height: 60px;
-border: 6px solid var(–c-yellow);
-border-top-color: var(–c-primary);
+border: 6px solid #ffd23f;
+border-top-color: #ff5a36;
 border-radius: 50%;
 animation: spin 0.8s linear infinite;
 }
@@ -486,7 +486,7 @@ position: fixed;
 bottom: 30px;
 left: 50%;
 transform: translateX(-50%) translateY(150%);
-background: var(–c-ink);
+background: #2b1d0e;
 color: white;
 padding: 14px 24px;
 border-radius: 16px;
@@ -510,21 +510,36 @@ stroke-linejoin: round;
 fill: none;
 }
 .step-shape.new {
-stroke: #ff5a36;
-stroke-width: 5;
-animation: drawIn 0.5s ease-out;
+animation: drawIn 0.8s ease-out;
 }
 @keyframes drawIn {
-from { opacity: 0; transform: scale(0.8); transform-origin: center; }
-to { opacity: 1; transform: scale(1); }
+0% {
+opacity: 0;
+stroke: #ff5a36;
+stroke-width: 6;
+transform: scale(0.85);
+transform-origin: center;
 }
-.step-shape.fill-y { fill: var(–c-yellow); }
-.step-shape.fill-p { fill: var(–c-pink); }
-.step-shape.fill-b { fill: var(–c-blue); }
-.step-shape.fill-g { fill: var(–c-green); }
+60% {
+opacity: 1;
+stroke: #ff5a36;
+stroke-width: 5;
+transform: scale(1.02);
+}
+100% {
+opacity: 1;
+stroke: #2b1d0e;
+stroke-width: 3;
+transform: scale(1);
+}
+}
+.step-shape.fill-y { fill: #ffd23f; }
+.step-shape.fill-p { fill: #ff6b9d; }
+.step-shape.fill-b { fill: #4ecdc4; }
+.step-shape.fill-g { fill: #95e06c; }
 .step-shape.fill-w { fill: white; }
-.step-shape.fill-r { fill: var(–c-primary); }
-.step-shape.fill-u { fill: var(–c-purple); }
+.step-shape.fill-r { fill: #ff5a36; }
+.step-shape.fill-u { fill: #a06cd5; }
 .step-shape.fill-brown { fill: #a0522d; }
 </style>
 
@@ -880,28 +895,28 @@ const DRAWINGS = {
        `<path class="step-shape new" d="M 70 320 A 130 130 0 0 1 330 320" style="stroke:#ff9933; stroke-width:18; fill:none"/>`],
       [`<path class="step-shape" d="M 50 320 A 150 150 0 0 1 350 320" stroke="#ff5a36" stroke-width="18" fill="none"/>`,
        `<path class="step-shape" d="M 70 320 A 130 130 0 0 1 330 320" style="stroke:#ff9933; stroke-width:18; fill:none"/>`,
-       `<path class="step-shape new" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:var(--c-yellow); stroke-width:18; fill:none"/>`],
+       `<path class="step-shape new" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:#ffd23f; stroke-width:18; fill:none"/>`],
       [`<path class="step-shape" d="M 50 320 A 150 150 0 0 1 350 320" stroke="#ff5a36" stroke-width="18" fill="none"/>`,
        `<path class="step-shape" d="M 70 320 A 130 130 0 0 1 330 320" style="stroke:#ff9933; stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:var(--c-yellow); stroke-width:18; fill:none"/>`,
-       `<path class="step-shape new" d="M 110 320 A 90 90 0 0 1 290 320" style="stroke:var(--c-green); stroke-width:18; fill:none"/>`],
+       `<path class="step-shape" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:#ffd23f; stroke-width:18; fill:none"/>`,
+       `<path class="step-shape new" d="M 110 320 A 90 90 0 0 1 290 320" style="stroke:#95e06c; stroke-width:18; fill:none"/>`],
       [`<path class="step-shape" d="M 50 320 A 150 150 0 0 1 350 320" stroke="#ff5a36" stroke-width="18" fill="none"/>`,
        `<path class="step-shape" d="M 70 320 A 130 130 0 0 1 330 320" style="stroke:#ff9933; stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:var(--c-yellow); stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 110 320 A 90 90 0 0 1 290 320" style="stroke:var(--c-green); stroke-width:18; fill:none"/>`,
-       `<path class="step-shape new" d="M 130 320 A 70 70 0 0 1 270 320" style="stroke:var(--c-blue); stroke-width:18; fill:none"/>`],
+       `<path class="step-shape" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:#ffd23f; stroke-width:18; fill:none"/>`,
+       `<path class="step-shape" d="M 110 320 A 90 90 0 0 1 290 320" style="stroke:#95e06c; stroke-width:18; fill:none"/>`,
+       `<path class="step-shape new" d="M 130 320 A 70 70 0 0 1 270 320" style="stroke:#4ecdc4; stroke-width:18; fill:none"/>`],
       [`<path class="step-shape" d="M 50 320 A 150 150 0 0 1 350 320" stroke="#ff5a36" stroke-width="18" fill="none"/>`,
        `<path class="step-shape" d="M 70 320 A 130 130 0 0 1 330 320" style="stroke:#ff9933; stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:var(--c-yellow); stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 110 320 A 90 90 0 0 1 290 320" style="stroke:var(--c-green); stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 130 320 A 70 70 0 0 1 270 320" style="stroke:var(--c-blue); stroke-width:18; fill:none"/>`,
-       `<path class="step-shape new" d="M 150 320 A 50 50 0 0 1 250 320" style="stroke:var(--c-purple); stroke-width:18; fill:none"/>`],
+       `<path class="step-shape" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:#ffd23f; stroke-width:18; fill:none"/>`,
+       `<path class="step-shape" d="M 110 320 A 90 90 0 0 1 290 320" style="stroke:#95e06c; stroke-width:18; fill:none"/>`,
+       `<path class="step-shape" d="M 130 320 A 70 70 0 0 1 270 320" style="stroke:#4ecdc4; stroke-width:18; fill:none"/>`,
+       `<path class="step-shape new" d="M 150 320 A 50 50 0 0 1 250 320" style="stroke:#a06cd5; stroke-width:18; fill:none"/>`],
       [`<path class="step-shape" d="M 50 320 A 150 150 0 0 1 350 320" stroke="#ff5a36" stroke-width="18" fill="none"/>`,
        `<path class="step-shape" d="M 70 320 A 130 130 0 0 1 330 320" style="stroke:#ff9933; stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:var(--c-yellow); stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 110 320 A 90 90 0 0 1 290 320" style="stroke:var(--c-green); stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 130 320 A 70 70 0 0 1 270 320" style="stroke:var(--c-blue); stroke-width:18; fill:none"/>`,
-       `<path class="step-shape" d="M 150 320 A 50 50 0 0 1 250 320" style="stroke:var(--c-purple); stroke-width:18; fill:none"/>`,
+       `<path class="step-shape" d="M 90 320 A 110 110 0 0 1 310 320" style="stroke:#ffd23f; stroke-width:18; fill:none"/>`,
+       `<path class="step-shape" d="M 110 320 A 90 90 0 0 1 290 320" style="stroke:#95e06c; stroke-width:18; fill:none"/>`,
+       `<path class="step-shape" d="M 130 320 A 70 70 0 0 1 270 320" style="stroke:#4ecdc4; stroke-width:18; fill:none"/>`,
+       `<path class="step-shape" d="M 150 320 A 50 50 0 0 1 250 320" style="stroke:#a06cd5; stroke-width:18; fill:none"/>`,
        `<path class="step-shape new" fill="#ffffff" d="M 30 340 Q 20 310 50 300 Q 60 280 85 295 Q 110 285 110 320 Q 110 340 80 340 Z"/>`,
        `<path class="step-shape new" fill="#ffffff" d="M 290 340 Q 290 310 315 305 Q 325 285 350 300 Q 380 295 380 325 Q 380 345 350 340 Z"/>`]
     ]
